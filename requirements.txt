@@ -1,0 +1,1 @@
+1. to run the code which divides video into frames, we need to have opencv installed on your PC.

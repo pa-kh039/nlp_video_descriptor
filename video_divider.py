@@ -22,10 +22,10 @@ def FrameCapture(path):
 		# function extract frames
 		success, image = vidObj.read()
 		#threshold is a hyperparameter which is to be tuned regularly
-		if previousimage==None or diff(previousimage,image)>threshold:
+		# if previousimage==None or diff(previousimage,image)>threshold:
 			#Saves the frames with frame-count
-			cv2.imwrite("frame%d.jpg" % count, image)
-			count+= 1
+		cv2.imwrite("./frames/frame%d.jpg" % count, image)
+		count+= 1
 	print(success,"at the end")
 		
 

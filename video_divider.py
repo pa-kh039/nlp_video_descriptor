@@ -2,6 +2,7 @@
 # and Extract Frames
 import cv2
 
+
 # Function to extract frames
 def FrameCapture(path):
 	global previousimage

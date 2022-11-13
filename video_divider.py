@@ -27,14 +27,18 @@ def FrameCapture(path):
 			#Saves the frames with frame-count
 		cv2.imwrite("./frames/frame%d.jpg" % count, image)
 		count+= 1
-	print(success,"at the end")
+	print()
+	print("*******************************************************************************")
+	print("The video has been divided into frames.................")
+	print("*******************************************************************************")
+	# print(success,"at the end")
 		
 
 # Driver Code
 if __name__ == '__main__':
 
 	# Calling the function
-	previousimage=None
-	# threshold=1234567
-	path=input("Enter full path of the video whose description is to be generated:")
+	previousimage=None   
+	threshold=558    #this hyperparameter is decided by the user for each video separately
+	path=input("Enter full path of the video whose description is to be generated: \n")
 	FrameCapture(path)

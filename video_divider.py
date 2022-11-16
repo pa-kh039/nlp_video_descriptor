@@ -2,7 +2,8 @@
 # and Extract Frames
 import cv2
 from diff import getdifference
-
+import statistics
+import numpy as np
 
 # Function to extract frames
 def FrameCapture(path):
@@ -41,20 +42,32 @@ def FrameCapture(path):
 	a = 0
 	b = 1
 	sum = 0
+	# #######
+	# count=165
+	########
+	sample=[]
 	while b<count:
 		c = getdifference('frame'+str(a)+'.jpg','frame'+str(b)+'.jpg')
 		sum = sum + c
+		sample.append(c)
 		a = a + 1
 		b = b + 1
-	sum = 3*(sum/(count))
-	print(sum)
+	# sum = 3*(sum/(count))
+	mean=statistics.mean(np.array(sample).flatten())
+	std=statistics.stdev(np.array(sample).flatten())
+	print("mean:",mean)
+	print("std:",std)
+	threshold=mean+2*std
+	print("thresh:",mean+2*std)
+	# print(sum)
+	# threshold=9589
 	a = 0
 	b = 1
 	l = []
 	l.append('frame'+str(a)+'.jpg')
 	while b < count:
 		c = getdifference('frame'+str(a)+'.jpg','frame'+str(b)+'.jpg')
-		if (c>=sum):
+		if (c>=threshold):
 			print(c)
 			l.append('frame'+str(b)+'.jpg')
 			a = b 
@@ -66,6 +79,6 @@ if __name__ == '__main__':
 
 	# Calling the function
 	previousimage=None   
-	threshold=558    #this hyperparameter is decided by the user for each video separately
+	# threshold=558    #this hyperparameter is decided by the user for each video separately
 	path=input("Enter full path of the video whose description is to be generated: \n")
 	FrameCapture(path)
